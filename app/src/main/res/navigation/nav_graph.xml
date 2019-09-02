@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:navGraph="@navigation/nav_graph"
+            app:startDestination="@id/placesFragment">
+
+    <fragment android:id="@+id/placesFragment" android:name="com.example.bwl_test.View.Fragments.PlacesFragment"
+              android:label="fragment_places" tools:layout="@layout/fragment_places">
+        <action android:id="@+id/actionPlacesFragmentToMapFragment" app:destination="@+id/mapFragment">
+            <argument android:defaultValue="NoPlace" android:name="arg_placeName"/>
+            <argument android:defaultValue="NoLat" android:name="arg_lat"/>
+            <argument android:defaultValue="NoLng" android:name="arg_lng"/>
+        </action>
+        <action android:id="@+id/action_placesFragment_to_weatherFragment" app:destination="@id/weatherFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/mapFragment" android:name="com.example.bwl_test.View.Fragments.MapFragment"
+              android:label="fragment_map" tools:layout="@layout/fragment_map">
+        <argument android:name="arg_placeName" app:argType="string" android:defaultValue="NoPlace"/>
+        <argument android:name="arg_lat" app:argType="string" android:defaultValue="NoLat"/>
+        <argument android:name="arg_lng" app:argType="string" android:defaultValue="NoLng"/>
+    </fragment>
+    <fragment android:id="@+id/weatherFragment" android:name="com.example.bwl_test.View.Fragments.WeatherFragment"
+              android:label="fragment_weather" tools:layout="@layout/fragment_weather">
+        <action android:id="@+id/action_weatherFragment_to_mapFragment" app:destination="@id/mapFragment">
+            <argument android:defaultValue="NoPlace" android:name="arg_placeName"/>
+            <argument android:defaultValue="NoLat" android:name="arg_lat"/>
+            <argument android:defaultValue="NoLng" android:name="arg_lng"/>
+        </action>
+    </fragment>
+
+</navigation>
